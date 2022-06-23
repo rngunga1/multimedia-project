@@ -46,6 +46,11 @@ class Filme
      */
     private $categoria;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descricao;
+
     public function __construct()
     {
         $this->pessoasFilmeFavorito = new ArrayCollection();
@@ -127,6 +132,18 @@ class Filme
     public function setCategoria(?Categoria $categoria): self
     {
         $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    public function getDescricao(): ?string
+    {
+        return $this->descricao;
+    }
+
+    public function setDescricao(?string $descricao): self
+    {
+        $this->descricao = $descricao;
 
         return $this;
     }
