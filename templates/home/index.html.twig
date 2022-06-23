@@ -38,16 +38,19 @@
                      </div>
                      <div class="col-md-12">
                         <div class="owl-carousel owl-carousel-category" >
-                           <div class="item">
-                              <div class="category-item">
-                                 <a href="#">
-                                    <img class="img-fluid" src="{{asset('assets/img/s1.png')}}" alt="">
-                                    <h6>Your Life</h6>
-                                    <p>74,853 views</p>
-                                 </a>
+                           {% for categoria in categorias %}
+                              <div class="item">
+                                 <div class="category-item">
+                                    <a href="#">
+                                       <img class="img-fluid" src="{{asset('assets/img/s1.png')}}" alt="">
+                                       <h6>{{categoria.nome}}</h6>
+                                       <p>74,853 views</p>
+                                    </a>
+                                 </div>
                               </div>
-                           </div>
-                           <div class="item">
+                           {% endfor %}
+                           
+                           {# <div class="item">
                               <div class="category-item">
                                  <a href="#">
                                     <img class="img-fluid" src="{{asset('assets/img/s2.png')}}" alt="">
@@ -145,7 +148,7 @@
                                     <p>74,853 views</p>
                                  </a>
                               </div>
-                           </div>
+                           </div> #}
                         </div>
                      </div>
                   </div>
