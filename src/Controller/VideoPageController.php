@@ -43,11 +43,6 @@ class VideoPageController extends AbstractController
 
         }
 
-
-
-
-
-        $utilizador = $doctrine->getRepository(Utilizador::class)->find(1);
         
         $filme = new Filme();
     
@@ -61,10 +56,5 @@ class VideoPageController extends AbstractController
         //return $this->render('video/upload_video.html.twig');
     }
 
-    //Função da gambiarra
-    public function new(Request $request)
-    {
-       
-        
-    }
+    
 }

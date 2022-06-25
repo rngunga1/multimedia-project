@@ -4,40 +4,68 @@ namespace App\Controller;
 
 use App\Entity\Pessoa;
 use App\Entity\Utilizador;
+use App\Form\FormRegistroUtilizadorType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class UtilizadorController extends AbstractController
 {
     /**
      * @Route("/utilizador", name="create_utilizador")
      */
-    public function criarUtilizador(ManagerRegistry $doctrine): Response
+    public function criarUtilizador(UserPasswordHasherInterface $passwordHasher, Request $request, ManagerRegistry $doctrine): Response
     {
-        $entityManager = $doctrine->getManager();
+        $utilizador1 = new User();
+        $formulario1 = $this->createForm(FormRegistroUtilizadorType::class, $utilizador1);
+       ;
+    
 
-        //Pessoa
-        $pessoa = new Pessoa();
-        $pessoa->setNome("Rafael Ngunga");
-        $pessoa->setIdade(22);
+        $formulario1->handleRequest($request);
+        if($formulario1->isSubmitted()) {
+            $utilizador1 = $formulario1->getData();
+            $hashedPassword = $passwordHasher->hashPassword($utilizador1, $utilizador1->getPassword());
+            $utilizador1->setPassword($hashedPassword);
 
-        //Utilizador
-        $utilizador = new Utilizador();
-        $utilizador->setUsername("rngunga");
-        $utilizador->setEmail("rafangu@gmail.com");
-        $utilizador->setPassword("123");
-        $utilizador->setPessoa($pessoa);
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($utilizador1);
+            $entityManager->flush();
+            
+            return new Response('Check out this great user: '. $utilizador1->getusername() . "<br>Password: " . $utilizador1->getPassword());
 
-        $entityManager->persist($pessoa);
-        $entityManager->persist($utilizador);
+        }
 
-        $entityManager->flush();
+        $utilizador = new User();
+    
 
-        return $this->render('utilizador/index.html.twig', [
-            'controller_name' => 'UtilizadorController',
+        $form = $this->createForm(FormRegistroUtilizadorType::class, $utilizador);
+
+        return $this->renderForm('utilizador/registro_utilizador.html.twig', [
+            'form' =>$form
         ]);
+        
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render("utilizador/login.html.twig", [
+            'controller_name' => 'LoginController',
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]); 
     }
 
     /**
