@@ -8,6 +8,7 @@
 <div id="content-wrapper">
 
             <div class="container-fluid upload-details">
+            {{form_start(form)}}
                <div class="row">
                   <div class="col-lg-12">
                      <div class="main-title">
@@ -15,7 +16,10 @@
                      </div>
                   </div>
                   <div class="col-lg-2">
-                     <div class="imgplace"></div>
+                     <div class="imgplace">
+                     {{ form_row(form.URL) }}
+
+                     </div>
                   </div>
                   <div class="col-lg-10">
                      <div class="osahan-title">Contrary to popular belief, Lorem Ipsum (2019) is not.</div>
@@ -37,7 +41,7 @@
                      <div class="osahan-form">
                         <div class="row">
                            <div class="col-lg-12">
-                           {{ form_start(form) }}
+
 
                               <div class="form-group">
                                  {# <label for="e1">Video Title</label> #}
@@ -69,7 +73,7 @@
 
                               </div>
                           
-                            {{ form_end(form) }}
+                            
                            </div>
                            <div class="col-lg-12">
                               <div class="form-group">
@@ -312,6 +316,7 @@
                      </div>
                   </div>
                </div>
+               {{ form_end(form) }}
             </div>
             <!-- /.container-fluid -->
             <!-- Sticky Footer -->

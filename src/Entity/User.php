@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,6 +41,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Filme::class, mappedBy="uploadUser", orphanRemoval=true)
+     */
+    private $uploadedFilms;
+
+    public function __construct()
+    {
+        $this->uploadedFilms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -132,6 +144,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Filme>
+     */
+    public function getUploadedFilms(): Collection
+    {
+        return $this->uploadedFilms;
+    }
+
+    public function addUploadedFilm(Filme $uploadedFilm): self
+    {
+        if (!$this->uploadedFilms->contains($uploadedFilm)) {
+            $this->uploadedFilms[] = $uploadedFilm;
+            $uploadedFilm->setUploadUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUploadedFilm(Filme $uploadedFilm): self
+    {
+        if ($this->uploadedFilms->removeElement($uploadedFilm)) {
+            // set the owning side to null (unless already changed)
+            if ($uploadedFilm->getUploadUser() === $this) {
+                $uploadedFilm->setUploadUser(null);
+            }
+        }
 
         return $this;
     }

@@ -54,13 +54,25 @@ class CategoriaRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Categoria
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findOneBySomeField($value): ?Categoria
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.nome = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
+   public function findByName($value): Categoria
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.nome = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
+
 }

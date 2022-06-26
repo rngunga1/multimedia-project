@@ -11,6 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Controller\VideoPageController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
+
 
 class FormMovieType extends AbstractType
 {
@@ -25,8 +28,21 @@ class FormMovieType extends AbstractType
         $builder
             ->add('produtora', TextType::class)
             ->add('titulo', TextType::class)
-            // ->add('pessoasFilmeFavorito')
-            //->add('uploadUtilizador')
+            ->add('URL', FileType::class, [
+                'label' => 'VIDEO',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '200M',
+                        'mimeTypes' => [
+                            'video/x-flv',
+                            'video/mp4',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid video',
+                    ])
+                ],
+            ])
             ->add('categoria', ChoiceType::class, [
                 'choices' => [
                     'Comedy' => $comedia,

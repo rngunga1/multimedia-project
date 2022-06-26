@@ -35,12 +35,6 @@ class Filme
     private $pessoasFilmeFavorito;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilizador::class, inversedBy="filmesPostados")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $uploadUtilizador;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Categoria::class, inversedBy="filmes")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -50,6 +44,27 @@ class Filme
      * @ORM\Column(type="text", nullable=true)
      */
     private $descricao;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $views;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $postDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="uploadedFilms")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $uploadUser;
 
     public function __construct()
     {
@@ -112,17 +127,6 @@ class Filme
         return $this;
     }
 
-    public function getUploadUtilizador(): ?Utilizador
-    {
-        return $this->uploadUtilizador;
-    }
-
-    public function setUploadUtilizador(?Utilizador $uploadUtilizador): self
-    {
-        $this->uploadUtilizador = $uploadUtilizador;
-
-        return $this;
-    }
 
     public function getCategoria(): ?Categoria
     {
@@ -144,6 +148,54 @@ class Filme
     public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    public function getPostDate(): ?\DateTimeInterface
+    {
+        return $this->postDate;
+    }
+
+    public function setPostDate(?\DateTimeInterface $postDate): self
+    {
+        $this->postDate = $postDate;
+
+        return $this;
+    }
+
+    public function getUploadUser(): ?User
+    {
+        return $this->uploadUser;
+    }
+
+    public function setUploadUser(?User $uploadUser): self
+    {
+        $this->uploadUser = $uploadUser;
 
         return $this;
     }
