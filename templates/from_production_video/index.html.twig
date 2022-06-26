@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-8">
+                        <div class="single-video-left">
+                           <div class="single-video">
+                              {# <iframe width="100%" height="315" src="Keemple Smart Home _ 3D animation.mp4"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> #}
+                              <video width="150%" height="100%" controls>
+                                 <source src="{{asset('MEDITATING.mp4')}}" type="video/webm">
+                              </video>
+                           </div>
+                           <div class="single-video-title box mb-3">
+                              <h2><a href="#">MEDITATING</a></h2>
+                              <p class="mb-0"><i class="fas fa-eye"></i> 19.9M</p>
+                           </div>
+                           <div class="single-video-author box mb-3">
+                              <div class="float-right"><button class="btn btn-danger" type="button">Subscribe <strong>1.4M</strong></button> <button class="btn btn btn-outline-danger" type="button"><i class="fas fa-bell"></i></button></div>
+                              <img class="img-fluid" src="img/s4.png" alt="">
+                              <p><a href="#"><strong>ONE MEDIA</strong></a> <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></span></p>
+                              <small>Published on Aug 10, 2018</small>
+                           </div>
+                           <div class="single-video-info-content box mb-3">
+                              <h6>Cast:</h6>
+                              <p>RAFAEL VANDER VART ,PERSIDA GAL GADOT ,DENISE PRYANKA </p>
+                              <h6>Categoria :</h6>
+                              <p>COMÉDIA, LIFESTYLE ,ACTION , 1080p</p>
+                              <h6>Descrição :</h6>
+                              <p>Tem se sentido estressada? E com a necessidade de relaxar?
+
+Não se preocupe que a One media chegou para resolver o seu problema.
+
+Na nossa plataforma você pode encontrar uma diversidade de videos para 
+relaxar; como aulas de yoga e meditação,
+ para entretendimento e serviços de rádio que lhe ajudarão
+ a fugir do aborrecimento.
+
+One Media , cuide do seu entretendimentoe bem estar. </p>
+                              <h6>Tags :</h6>
+                              <p class="tags mb-0">
+                                 <span><a href="#">Uncharted 4</a></span>
+                                 <span><a href="#">Playstation 4</a></span>
+                                 <span><a href="#">Gameplay</a></span>
+                                 <span><a href="#">1080P</a></span>
+                                 <span><a href="#">ps4Share</a></span>
+                                 <span><a href="#">+ 6</a></span>
+                              </p>
+                           </div>
+                        </div>
+                  </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+               <div class="container">
+                  <div class="row no-gutters">
+                     <div class="col-lg-6 col-sm-6">
+                        <p class="mt-1 mb-0"><strong class="text-dark">Vidoe</strong>. 
+                           <small class="mt-0 mb-0"><a class="text-primary" target="_blank" href="https://templatespoint.net/">TemplatesPoint</a>
+                           </small>
+                        </p>
+                     </div>
+                     <div class="col-lg-6 col-sm-6 text-right">
+                        <div class="app">
+                           <a href="#"><img alt="" src="img/google.png"></a>
+                           <a href="#"><img alt="" src="img/apple.png"></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+         </div>
+         <!-- /.content-wrapper -->
+      </div>
+      <!-- /#wrapper -->    
+{% endblock %}

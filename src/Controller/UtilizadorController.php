@@ -39,7 +39,11 @@ class UtilizadorController extends AbstractController
             $entityManager->persist($utilizador1);
             $entityManager->flush();
             
-            return new Response('Check out this great user: '. $utilizador1->getusername() . "<br>Password: " . $utilizador1->getPassword());
+            $response = $this->forward('App\Controller\HomeController::index', [
+  
+            ]);
+            return $response;
+            // return new Response('Check out this great user: '. $utilizador1->getusername() . "<br>Password: " . $utilizador1->getPassword());
 
         }
 

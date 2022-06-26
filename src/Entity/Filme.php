@@ -66,6 +66,11 @@ class Filme
      */
     private $uploadUser;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumbImg;
+
     public function __construct()
     {
         $this->pessoasFilmeFavorito = new ArrayCollection();
@@ -196,6 +201,18 @@ class Filme
     public function setUploadUser(?User $uploadUser): self
     {
         $this->uploadUser = $uploadUser;
+
+        return $this;
+    }
+
+    public function getThumbImg(): ?string
+    {
+        return $this->thumbImg;
+    }
+
+    public function setThumbImg(?string $thumbImg): self
+    {
+        $this->thumbImg = $thumbImg;
 
         return $this;
     }

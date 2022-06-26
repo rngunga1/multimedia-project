@@ -38,6 +38,27 @@ class FormMovieType extends AbstractType
                         'mimeTypes' => [
                             'video/x-flv',
                             'video/mp4',
+                            'video/x-msvideo',
+                            'video/mpeg',
+                            'video/ogg',
+                            'video/webm',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid video',
+                    ])
+                ],
+            ])
+            ->add('thumbImg', FileType::class, [
+                'label' => 'THUMB_IMG',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '200M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/tiff',
+                            'image/webp',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid video',
                     ])

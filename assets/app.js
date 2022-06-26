@@ -11,32 +11,3 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
-import $ from 'jQuery';
-import greet from './greet';
-import mediaServer from './mediaServer';
-
-
-window.alert(greet("Olaaaaaaa"));
-
-
-window.alert("Olá mundo")
-
-
-
-var myHeaders = new Headers();
-myHeaders.append("Content-Security-Policy", "upgrade-insecure-requests");
-
-var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
-
-fetch('flowers.jpg',myInit)
-.then(function(response) {
-  return response.blob();
-})
-.then(function(myBlob) {
-  var objectURL = URL.createObjectURL(myBlob);
-  myImage.src = objectURL;
-});
-

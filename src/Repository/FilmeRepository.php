@@ -54,6 +54,21 @@ class FilmeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+   /**
+    * @return Filme[] Returns an array of Filme objects by category
+    */
+   public function findByCategory($value): array
+   {
+       return $this->createQueryBuilder('f')
+           ->andWhere('f.categoria_id = :val')
+           ->setParameter('val', $value)
+           ->orderBy('f.id', 'ASC')
+           ->setMaxResults(20)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    public function findOneBySomeField($value): ?Filme
 //    {
 //        return $this->createQueryBuilder('f')

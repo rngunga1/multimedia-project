@@ -41,7 +41,7 @@
                            {% for categoria in categorias %}
                               <div class="item">
                                  <div class="category-item">
-                                    <a href="#">
+                                    <a href={{ path('video_category',{categoria: categoria.id}) }}>
                                        <img class="img-fluid" src="{{asset('assets/img/s1.png')}}" alt="">
                                        <h6>{{categoria.nome}}</h6>
                                        <p>74,853 views</p>
@@ -77,15 +77,17 @@
                            <div class="video-card">
                               <div class="video-card-image">
                                  <a class="play-icon" href="{{path('app_video',{filme: filme.id})}}"><i class="fas fa-play-circle"></i></a>
-                                 <a href="{{path('app_video', {filme: filme.id})}}"><img class="img-fluid" src="{{asset('assets/img/v3.png')}}" alt=""></a>
+                                 {# 'url' => '/uploads/videos/' . $url, #}
+                                 
+                                 <a href="{{path('app_video', {filme: filme.id})}}"><img class="img-fluid" src="{{asset(filme.thumbImg)}}" alt=""></a>
                                  <div class="time">3:50</div>
                               </div>
                               <div class="video-card-body">
                                  <div class="video-title">
-                                    <a href="{{path('app_video', {filme: filme.id})}}">There are many variations of passages of Lorem</a>
+                                    <a href="{{path('app_video', {filme: filme.id})}}">{{filme.titulo}}</a>
                                  </div>
                                  <div class="video-page text-danger">
-                                    Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Unverified"><i class="fas fa-frown text-danger"></i></a>
+                                    {{filme.categoria.nome}}  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Unverified"><i class="fas fa-frown text-danger"></i></a>
                                  </div>
                                  <div class="video-view">
                                     1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
