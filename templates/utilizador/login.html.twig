@@ -48,17 +48,17 @@
                         </div>
 
                          {# If you want to control the URL the user is redirected to on success#}
-                            <input type="hidden" name="app_home" value="/account"/> 
                         <div class="mt-4">
                            <div class="row">
                               <div class="col-12">
+                                 <input type="hidden" name="app_home" value="/account"/> 
                                  <button type="submit" class="btn btn-outline-primary btn-block btn-lg">Sign In</button>
                               </div>
                            </div>
                         </div>
                      </form>
                      <div class="text-center mt-5">
-                        <p class="light-gray">Don’t have an account? <a href="register.html">Sign Up</a></p>
+                        <p class="light-gray">Don’t have an account? <a href={{ path('create_utilizador') }}>Sign Up</a></p>
                      </div>
                   </div>
                </div>
